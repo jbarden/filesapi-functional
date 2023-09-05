@@ -15,10 +15,7 @@ internal static class FileInfoExtensions
     internal static IEnumerable<FileInfo> SelectDuplicates(this IEnumerable<FileInfo> files, SearchType searchType) =>
         searchType switch
         {
-            SearchType.Duplicates => files
-                .GroupBy(file => file.Length)
-                .Where(fileGroups => fileGroups.Count() > 1)
-                .SelectMany(f => f),
+            SearchType.Duplicates => files.GetDuplicates().SelectMany(f => f),
             _ => files
         };
 
@@ -34,4 +31,8 @@ internal static class FileInfoExtensions
         };
 
     private static int SkipItemsCalculator(int itemsPerPage, int currentPage) => itemsPerPage * (currentPage - 1);
+
+    private static IEnumerable<IGrouping<long, FileInfo>> GetDuplicates(this IEnumerable<FileInfo> files) =>
+        files.GroupBy(file => file.Length)
+            .Where(fileGroups => fileGroups.Count() > 1);
 }
