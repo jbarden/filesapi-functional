@@ -2,7 +2,9 @@
 
 public class Override
 {
-    public string MicrosoftAspNetCore { get; set; }
-    public string SystemNetHttp { get; set; }
-    public string FilesApi { get; set; }
+    public string MicrosoftAspNetCore { get; set; } = string.Empty;
+
+    public string SystemNetHttp { get; set; } = string.Empty;
+
+    public string FilesApi { get; set; } = string.Empty;
 }

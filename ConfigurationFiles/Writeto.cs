@@ -2,6 +2,7 @@
 
 public class Writeto
 {
-    public string Name { get; set; }
-    public Args Args { get; set; }
+    public string Name { get; set; } = string.Empty;
+
+    public Args Args { get; set; } = new();
 }

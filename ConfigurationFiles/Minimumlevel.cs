@@ -2,6 +2,7 @@
 
 public class Minimumlevel
 {
-    public string Default { get; set; }
-    public Override Override { get; set; }
+    public string Default { get; set; } = string.Empty;
+
+    public Override Override { get; set; } = new();
 }

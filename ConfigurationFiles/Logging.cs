@@ -2,5 +2,5 @@
 
 public class Logging
 {
-    public Loglevel LogLevel { get; set; }
+    public Loglevel LogLevel { get; set; } = new();
 }

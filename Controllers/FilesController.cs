@@ -2,6 +2,7 @@
 using FilesApi.Extensions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.IO;
 
 namespace FilesApi.Controllers;
 
@@ -20,9 +21,9 @@ public class FilesController : ControllerBase
     public IActionResult Get([FromQuery] SearchParameters searchParameters)
     {
         logger.LogInformation("Starting search...SearchFolder: {SearchFolder}, CurrentPage: {CurrentPage}, ItemsPerPage: {ItemsPerPage}, SearchType: {SearchType}, SearchOption: {SearchOption}, SortOrder: {SortOrder}", searchParameters.SearchDirectory, searchParameters.CurrentPage, searchParameters.ItemsPerPage, searchParameters.SearchType, searchParameters.SearchOption, searchParameters.SortOrder);
-
+        var canonicalDestinationPath = Path.GetFullPath(searchParameters.SearchDirectory);
         var files = Directory
-                                            .GetFiles(searchParameters.SearchDirectory, "*.*", searchParameters.SearchOption)
+                                            .GetFiles(canonicalDestinationPath, "*.*", searchParameters.SearchOption)
                                             .ToFileInfo(searchParameters)
                                             .ConvertToDtos();
 

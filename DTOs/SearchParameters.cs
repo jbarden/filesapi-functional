@@ -2,7 +2,7 @@
 
 public class SearchParameters
 {
-    public string SearchDirectory { get; set; } = @"c:\temp";
+    public string SearchDirectory { get; set; } = string.Empty;
 
     public SearchType SearchType { get; set; }
 

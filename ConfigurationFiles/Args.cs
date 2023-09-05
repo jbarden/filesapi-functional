@@ -2,5 +2,5 @@
 
 public class Args
 {
-    public string ServerUrl { get; set; }
+    public string ServerUrl { get; set; } = string.Empty;
 }
